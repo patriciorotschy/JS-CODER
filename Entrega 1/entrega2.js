@@ -1,38 +1,49 @@
 //EN PROCESO!!
 
 
+
 //Datos del docente
 let nombre_docente ;
 let apellido_docente ;
-let cantidad;
+
+//Funcion constructora
+function preg(pregunta_array, respuesta_array) {
+    this.pregunta_array = pregunta_array;
+    this.respuesta_array = respuesta_array;
+}
+
+//Array de preguntas
+let preguntas = [];
 
 
+//Agregar pregunta
 let btn = document.getElementById("btn_1");
 btn.addEventListener("click", function () {
+    
     nombre_docente = document.getElementById("nombre_docente").value;
     apellido_docente = document.getElementById("apellido_docente").value;
-    cantidad_preguntas = document.getElementById("cantidad_preguntas").value;
-    
-    for (let i=0; i<cantidad_preguntas; i++){
-        let pregunta = document.createElement("div");
-        pregunta.innerHTML= '<br><label>Pregunta</label><input class="preguntas" type="text" placeholder="Pregunta">    <br><label>Respuesta</label><input class="respuestas" type="text" placeholder="Respuesta">';
-        document.body.append(pregunta);
-    }
-    
-    let nuevo_boton = document.createElement("p");
-    nuevo_boton.innerHTML= '<button id="btn_2">Siguiente</button>';
-    document.body.append(nuevo_boton);
+        
+    let pregunta_respuesta = new preg(document.getElementById("pregunta").value, document.getElementById("respuesta").value);
+    preguntas.push(pregunta_respuesta);
 
+    let nueva_pregunta = document.createElement("div");
+    nueva_pregunta.innerHTML= '<br>  <label for="" >Pregunta</label>    <input id="pregunta" type="text" placeholder="Pregunta"> <br>    <label for="" >Respuesta</label>    <input id="respuesta" type="text" placeholder="Respuesta"> ';
+    document.body.append(nueva_pregunta);
 
-    let preguntas = [];
-    let respuestas = [];
-
-    let btn_2 = document.getElementById("btn_2");
-    btn_2.addEventListener("click", function (){
-    preguntas.push(document.getElementsByClassName("preguntas").value);
-    respuestas.push(document.getElementsByClassName("respuestas").value);
     console.log(preguntas);
-    console.log(respuestas);
+       
+        
 });
 
-});
+//Guardar y finalizar
+let btn_2 = document.getElementById("btn_2");
+btn_2.addEventListener("click", function (){
+    let pregunta_respuesta = new preg(document.getElementById("pregunta").value, document.getElementById("respuesta").value);
+    preguntas.push(pregunta_respuesta);
+
+    let saludo = document.createElement("div");
+    saludo.innerHTML= "<p>Gracias!</p>"
+    document.body.append(saludo);
+
+    console.log(preguntas);
+})
