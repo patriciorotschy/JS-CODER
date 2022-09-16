@@ -17,21 +17,33 @@ let preguntas = [];
 
 
 //Agregar pregunta
+let e = false;
 let btn = document.getElementById("btn_1");
 btn.addEventListener("click", function () {
     
-    nombre_docente = document.getElementById("nombre_docente").value;
-    apellido_docente = document.getElementById("apellido_docente").value;
+    
+        if(document.getElementById("pregunta").value != "" && document.getElementById("pregunta").className != "guardada"){
+            
+            
+            
+            nombre_docente = document.getElementById("nombre_docente").value;
+            apellido_docente = document.getElementById("apellido_docente").value;
+                
+            let pregunta_respuesta = new preg(document.getElementById("pregunta").value, document.getElementById("respuesta").value);
+            preguntas.push(pregunta_respuesta);
+
+            document.getElementById("pregunta").id = "0";
+            document.getElementById("respuesta").id = "0";
+
+            let nueva_pregunta = document.createElement("div");
+            nueva_pregunta.innerHTML= '<br>  <label for="" >Pregunta</label>    <input id="pregunta" type="text" placeholder="Pregunta"> <br>    <label for="" >Respuesta</label>    <input id="respuesta" type="text" placeholder="Respuesta"> ';
+            document.body.append(nueva_pregunta);
+
+            console.log(preguntas);
+
+        }
         
-    let pregunta_respuesta = new preg(document.getElementById("pregunta").value, document.getElementById("respuesta").value);
-    preguntas.push(pregunta_respuesta);
-
-    let nueva_pregunta = document.createElement("div");
-    nueva_pregunta.innerHTML= '<br>  <label for="" >Pregunta</label>    <input id="pregunta" type="text" placeholder="Pregunta"> <br>    <label for="" >Respuesta</label>    <input id="respuesta" type="text" placeholder="Respuesta"> ';
-    document.body.append(nueva_pregunta);
-
-    console.log(preguntas);
-       
+      
         
 });
 
