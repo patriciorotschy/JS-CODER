@@ -1,6 +1,3 @@
-//EN PROCESO!!
-
-
 
 //Datos del docente
 let nombre_docente ;
@@ -17,12 +14,12 @@ let preguntas = [];
 
 
 //Agregar pregunta
-let e = false;
+
 let btn = document.getElementById("btn_1");
 btn.addEventListener("click", function () {
     
     
-        if(document.getElementById("pregunta").value != "" && document.getElementById("pregunta").className != "guardada"){
+        if(document.getElementById("pregunta").value != ""){
             
             
             
@@ -42,6 +39,14 @@ btn.addEventListener("click", function () {
             console.log(preguntas);
 
         }
+        else{
+            Swal.fire({
+                title: 'Error!',
+                text: 'Debe agregar la pregunta para continuar',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
         
       
         
@@ -50,12 +55,27 @@ btn.addEventListener("click", function () {
 //Guardar y finalizar
 let btn_2 = document.getElementById("btn_2");
 btn_2.addEventListener("click", function (){
-    let pregunta_respuesta = new preg(document.getElementById("pregunta").value, document.getElementById("respuesta").value);
-    preguntas.push(pregunta_respuesta);
+    
+    if(document.getElementById("pregunta").value != ""){
+                
+        let pregunta_respuesta = new preg(document.getElementById("pregunta").value, document.getElementById("respuesta").value);
+        preguntas.push(pregunta_respuesta);
 
-    let saludo = document.createElement("div");
-    saludo.innerHTML= "<p>Gracias!</p>"
-    document.body.append(saludo);
+        let saludo = document.createElement("div");
+        saludo.innerHTML= "<p>Gracias!</p>"
+        document.body.append(saludo);
 
-    console.log(preguntas);
+        console.log(preguntas);
+
+    }
+    else{
+        Swal.fire({
+            title: 'Error!',
+            text: 'Debe agregar la pregunta para continuar',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        })
+    }
+    
 })
+
