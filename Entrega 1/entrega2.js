@@ -16,6 +16,7 @@ let preguntas = [];
 //Agregar pregunta
 
 let btn = document.getElementById("btn_1");
+let padre_preguntas = document.getElementById("padre_preguntas");
 btn.addEventListener("click", function () {
     
     
@@ -34,7 +35,7 @@ btn.addEventListener("click", function () {
 
             let nueva_pregunta = document.createElement("div");
             nueva_pregunta.innerHTML= '<br>  <label for="" >Pregunta</label>    <input id="pregunta" type="text" placeholder="Pregunta"> <br>    <label for="" >Respuesta</label>    <input id="respuesta" type="text" placeholder="Respuesta"> ';
-            document.body.append(nueva_pregunta);
+            padre_preguntas.append(nueva_pregunta);
 
             console.log(preguntas);
 
@@ -46,14 +47,12 @@ btn.addEventListener("click", function () {
                 icon: 'error',
                 confirmButtonText: 'OK'
             })
-        }
-        
-      
-        
+        }       
 });
 
 //Guardar y finalizar
 let btn_2 = document.getElementById("btn_2");
+
 btn_2.addEventListener("click", function (){
     
     if(document.getElementById("pregunta").value != ""){
@@ -62,10 +61,15 @@ btn_2.addEventListener("click", function (){
         preguntas.push(pregunta_respuesta);
 
         let saludo = document.createElement("div");
-        saludo.innerHTML= "<p>Gracias!</p>"
-        document.body.append(saludo);
+        saludo.innerHTML= '<p>Gracias!</p>'
+
+        padre_preguntas.append(saludo);
 
         console.log(preguntas);
+
+        let array_JSON = JSON.stringify (preguntas);
+
+        localStorage.setItem ("preguntas", array_JSON);
 
     }
     else{
@@ -79,3 +83,11 @@ btn_2.addEventListener("click", function (){
     
 })
 
+//Boton Parte Alumno
+
+let btn_3 = document.getElementById("btn_3");
+btn_3.addEventListener("click", function (){
+    
+    padre_preguntas.remove ();
+    
+})
